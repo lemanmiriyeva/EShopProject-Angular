@@ -1,0 +1,77 @@
+<h3>Yeni ürün ekle</h3>
+<form #productAddForm="ngForm" (ngSubmit)="add(productAddForm)">
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="Ürün adı"
+      #name="ngModel"
+      [(ngModel)]="model.name"
+      class="form-control"
+      name="name"
+      id="name"
+      required
+    />
+    <div *ngIf="name.invalid && name.dirty" class="alert alert-danger">
+      Ürün ismi gereklidir
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="Açıklama"
+      #description="ngModel"
+      [(ngModel)]="model.description"
+      class="form-control"
+      name="description"
+      id="description"
+      required
+    />
+    <div
+      *ngIf="description.invalid && description.dirty"
+      class="alert alert-danger"
+    >
+      Açıklama gereklidir
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="Ürün resmi"
+      #imageUrl="ngModel"
+      [(ngModel)]="model.imageUrl"
+      class="form-control"
+      name="imageUrl"
+      id="imageUrl"
+      required
+    />
+    <div *ngIf="imageUrl.invalid && imageUrl.dirty" class="alert alert-danger">
+      Ürün resmi gereklidir
+    </div>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      placeholder="Ürün fiyatı"
+      #price="ngModel"
+      [(ngModel)]="model.price"
+      class="form-control"
+      name="price"
+      id="price"
+      required
+    />
+    <div *ngIf="price.invalid && price.dirty" class="alert alert-danger">
+      Ürün fiyatı gereklidir
+    </div>
+  </div>
+  <div class="form-group">
+<select class="form-control"  #categoryId="ngModel" [(ngModel)]="model.categoryId"required id="categoryId" name="categoryId">
+    <option *ngFor="let category of categories"[value]="category.id" >{{category.name}}</option>
+</select>
+<div *ngIf="categoryId.invalid && categoryId.touched" class="alert alert-danger">
+    Kategori gereklidir
+  </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="productAddForm.invalid">
+      Ürün ekle
+  </button>
+</form>
